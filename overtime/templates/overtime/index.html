@@ -1,0 +1,49 @@
+{% extends 'overtime/base.html'%}
+{% load staticfiles %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'overtime/index.css' %}">
+{% endblock %}
+ 
+{% block body%}
+	
+      <div class="row">
+		<!-- col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main-->
+        <div class="main">
+          
+		  <h2 class="sub-header">My Reports</h2>
+	<a class="btn btn-sm btn-success" href="{% url 'overtime:report-add' %}" role="button">New Report</a>			  
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Creation Date</th>
+                  <th>Submited</th>
+                  <th>Submition Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                      
+				{%if all_reports%}
+					{% for report in all_reports %}
+				<tr>
+					<td>{{report}}</td>
+					<td>{{report.date_created }}</td>
+					<td>{{report.is_submited}}</td>
+					<td></td>
+					<td><a class="" href="{% url 'overtime:report' report.id %}">Edit</a> / <a class="" href="#">Remove</a></td>
+				</tr>
+					{%endfor%}
+				{%else%}
+					
+				{%endif%}
+				
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

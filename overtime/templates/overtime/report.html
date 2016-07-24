@@ -1,0 +1,57 @@
+{% extends 'overtime/base.html'%}
+{% load staticfiles %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'overtime/report.css' %}">
+{% endblock %}
+
+{% block body %}
+	<h2 class="sub-header">Report details</h2>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="panel panel-default panel-left">
+				<div class="panel-body">
+					Report meta
+					<h3>{{report}}</h3>
+				</div>
+			</div>	
+		</div>
+		<div class="col-sm-8 ">
+			<div class="panel panel-default panel-right">
+				<div class="panel-body">
+			        <div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+								  <th>Type</th>
+								  <th>Description</th>
+								  <th>Duration</th>
+								  <th>Start Date</th>
+								  <th>End Date</th>
+								  <th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% if report.event_set.all%}
+									{% for event in report.event_set.all %}
+										<tr>
+											<td>{{event.type}}</td>
+											<td>{{event.description}}</td>
+											<td>{{event.duration}}</td>
+											<td>{{event.start_date}}</td>
+											<td>{{event.end_date}}</td>
+											<td> Edit / Remove </td>
+										</tr>
+									{% endfor %}
+								{% else %}
+									<h2 class="danger">No events found in this report</h2>
+								{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>	
+		</div>
+
+	</div>
+{% endblock%}
