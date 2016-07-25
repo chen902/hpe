@@ -6,17 +6,27 @@
 {% endblock %}
 
 {% block body %}
-	<h2 class="sub-header">Report details</h2>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-3">
+            <a class="btn btn-sm btn-success" href="#" role="button">New Event</a>
+        </div>
+        <div class="col-sm-3">
+            <h2>Report details</h2>
+        </div>
+    </div>
+
 	<div class="row">
-		<div class="col-sm-3">
+        <div class="col-sm-3">
 			<div class="panel panel-default panel-left">
 				<div class="panel-body">
-					Report meta
 					<h3>{{report}}</h3>
+                    <h5>User Name</h5>
 				</div>
 			</div>	
 		</div>
-		<div class="col-sm-8 ">
+
+		<div class="col-sm-8">
 			<div class="panel panel-default panel-right">
 				<div class="panel-body">
 			        <div class="table-responsive">

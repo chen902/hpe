@@ -16,6 +16,13 @@ class Report(models.Model):
 		
 	def __str__(self):
 		return self.name
+
+	def get_year(self):
+		if self.event_set:
+			return self.event_set.all()[0].start_date.date().year
+
+
+
 	
 class Event(models.Model):
 	type = models.CharField(max_length=20)

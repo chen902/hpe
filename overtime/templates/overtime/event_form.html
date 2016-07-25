@@ -1,0 +1,39 @@
+{% extends 'overtime/base.html'%}
+
+{% block body %}
+
+	<div class="row">
+		<div class="col-sm-12 col-md-7">
+			<div class="panel panel-default">
+                <div class="panel-header">
+                    <h2>Event details</h2>
+                </div>
+				<div class="panel-body">
+					<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+						{% include 'overtime/form-template.html' %}
+                        {% csrf_token %}
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-success">Save</button>
+							</div>
+						</div>
+					</form>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
