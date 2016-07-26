@@ -1,7 +1,8 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from overtime.forms import EventForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
 from .models import Report, Event
@@ -38,11 +39,16 @@ class ReportUpdate(UpdateView):
 
 
 def event_create(request, report_id):
-	form = EventForm()
+	if request.method == "POST":
+		form = EventForm(request.POST)
+		if form.is_valid():
+			event = form.save(commit=False)
+			event.report = get_object_or_404(Report, pk=report_id)
+			event.save()
+			return redirect('overtime:report', pk=report_id)
+	else:
+		form = EventForm()
 	return render(request, 'overtime/event_edit.html', {'form': form, 'report_id': report_id})
 
 
-class EventDetail(generic.DetailView):
-	model = Event
-	template_name = 'overtime/event.html'
 

@@ -29,8 +29,12 @@
         </div>
         <script type="text/javascript">
             $(function () {
-                $('#datetimepicker1').datetimepicker();
-				$('#datetimepicker2').datetimepicker();
+                $('#datetimepicker1').datetimepicker({
+                	format: 'MM/DD/YYYY HH:mm'
+                });
+				$('#datetimepicker2').datetimepicker({
+					format: 'MM/DD/YYYY HH:mm'
+				});
             });
 
         </script>

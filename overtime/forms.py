@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from overtime.models import Event
 from django import forms
+from django.conf import settings
+
 from django.forms import widgets
 
 
@@ -25,7 +27,7 @@ class EventForm(forms.ModelForm):
 		fields = ['type', 'description', 'start_date', 'end_date', 'duration']
 
 		widgets = {
-			'start_date': forms.DateTimeInput(attrs={'class': 'input-group date', 'id': 'datetimepicker1', 'type': 'hidden'}),
+			'start_date': forms.DateTimeInput(attrs={'class': 'input-group date', 'id': 'datetimepicker1'}),
 			'end_date': forms.DateTimeInput(attrs={'class': 'input-group date', 'id': 'datetimepicker2'}),
 		}
 
