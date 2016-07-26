@@ -50,7 +50,14 @@
 											<td>{{event.duration}}</td>
 											<td>{{event.start_date}}</td>
 											<td>{{event.end_date}}</td>
-											<td> Edit / Remove </td>
+											<td>
+												<a href="{% url 'overtime:event-edit' event.pk %}">Edit</a>
+												<form method="post" action="{% url 'overtime:event-delete' event.pk %}" class="inline">
+													{% csrf_token %}
+												  <input type="hidden" name="event_id" value="{{ event.pk }}">
+												  <button type="submit"  class="btn btn-link">Remove</button>
+												</form>
+											</td>
 										</tr>
 									{% endfor %}
 								{% else %}

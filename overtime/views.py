@@ -51,4 +51,23 @@ def event_create(request, report_id):
 	return render(request, 'overtime/event_edit.html', {'form': form, 'report_id': report_id})
 
 
+def event_edit(request, pk):
+	event = get_object_or_404(Event, pk=pk)
+	if request.method == "POST":
+		form = EventForm(request.POST, instance=event)
+		if form.is_valid():
+			event = form.save(commit=False)
+			event.report = get_object_or_404(Report, pk=event.report.pk)
+			event.save()
+			return redirect('overtime:report', pk=event.report.pk)
+	else:
+		form = EventForm(instance=event)
+	return render(request, 'overtime/event_edit.html', {'form': form})
 
+
+class EventDelete(DeleteView):
+	model = Event
+
+	def get_success_url(self):
+		event = self.object
+		return reverse_lazy('overtime:report', kwargs={'pk': event.report.pk})
