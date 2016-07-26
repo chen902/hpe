@@ -42,4 +42,7 @@ def event_create(request, report_id):
 	return render(request, 'overtime/event_edit.html', {'form': form, 'report_id': report_id})
 
 
+class EventDetail(generic.DetailView):
+	model = Event
+	template_name = 'overtime/event.html'
 

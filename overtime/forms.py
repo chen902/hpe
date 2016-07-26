@@ -10,6 +10,12 @@ from django.forms import widgets
 # 	class Meta:
 # 		model = User
 # 		fields = ['username', 'employee_num', 'password']
+TYPES = (
+	(1, 'כונן יום חול'),
+	(2, 'כונן סוף שבוע'),
+	(3, 'שעות נוספות'),
+	(4, 'הקפצה'),
+)
 
 
 class EventForm(forms.ModelForm):
@@ -19,7 +25,7 @@ class EventForm(forms.ModelForm):
 		fields = ['type', 'description', 'start_date', 'end_date', 'duration']
 
 		widgets = {
-			'start_date': forms.DateTimeInput(attrs={'class': 'input-group date', 'id': 'datetimepicker1'}),
+			'start_date': forms.DateTimeInput(attrs={'class': 'input-group date', 'id': 'datetimepicker1', 'type': 'hidden'}),
 			'end_date': forms.DateTimeInput(attrs={'class': 'input-group date', 'id': 'datetimepicker2'}),
 		}
 
