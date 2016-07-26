@@ -1,5 +1,7 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from overtime.forms import EventForm
+from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
 from .models import Report, Event
@@ -35,8 +37,9 @@ class ReportUpdate(UpdateView):
 #	success_url = 'overtime:index'
 
 
-class EventCreate(CreateView):
-	model = Event
-	fields = ['type', 'description', 'start_date', 'end_date', 'duration']
+def event_create(request, report_id):
+	form = EventForm()
+	return render(request, 'overtime/event_edit.html', {'form': form, 'report_id': report_id})
+
 
 
